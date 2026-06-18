@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lácĕro Card Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/card-studio.css" />
+</head>
+<body>
+  <main class="studio-shell">
+    <header class="studio-top">
+      <h1>Card Studio</h1>
+      <div class="studio-nav">
+        <a href="lacero.html">목업</a>
+        <a href="lacero-tutorial.html">튜토리얼</a>
+        <a href="card-feedback.html" target="_blank" rel="noopener">피드백 창</a>
+      </div>
+    </header>
+
+    <section class="studio-grid">
+      <aside class="panel">
+        <h2>덱</h2>
+        <div class="row">
+          <input id="deck-name" type="text" placeholder="새 덱 이름" />
+          <button id="create-deck-btn" type="button">생성</button>
+        </div>
+        <ul id="deck-list" class="list"></ul>
+      </aside>
+
+      <aside class="panel">
+        <h2>카드</h2>
+        <div class="row">
+          <button id="new-card-btn" type="button">신규 카드</button>
+          <button id="copy-card-btn" type="button">복사</button>
+          <button id="derive-card-btn" type="button">파생</button>
+        </div>
+        <ul id="card-list" class="list"></ul>
+      </aside>
+
+      <section class="panel panel--editor">
+        <h2>카드 편집</h2>
+        <div class="editor-grid">
+          <label>카드 ID <input id="card-id" type="text" /></label>
+          <label>이름 <input id="card-name" type="text" /></label>
+          <label>타입
+            <select id="card-type">
+              <option value="normal_main">normal_main</option>
+              <option value="unique_main">unique_main</option>
+              <option value="arcana_front">arcana_front</option>
+              <option value="arcana_rear">arcana_rear</option>
+              <option value="enchant">enchant</option>
+            </select>
+          </label>
+          <label>속성(다중 선택)
+            <select id="card-attrs" multiple size="6">
+              <option value="sharp">sharp (예리)</option>
+              <option value="heavy">heavy (중후)</option>
+              <option value="bleed">bleed (출혈)</option>
+              <option value="dizziness">dizziness (현기증)</option>
+              <option value="control">control (경직/제어)</option>
+              <option value="burn">burn (화상)</option>
+              <option value="lifesteal">lifesteal (흡혈)</option>
+              <option value="curse">curse (저주)</option>
+              <option value="guard">guard (방어)</option>
+              <option value="focus">focus (집중)</option>
+              <option value="enchant">enchant</option>
+              <option value="arcana">arcana</option>
+            </select>
+          </label>
+          <label>고정 데미지 <input id="card-damage" type="number" min="0" /></label>
+          <label>연타 <input id="card-hits" type="number" min="0" /></label>
+          <label>주사위 면 <input id="card-dice" type="number" min="2" /></label>
+          <label>코스트 <input id="card-cost" type="number" min="0" /></label>
+          <label>짧은 설명 <input id="card-text" type="text" /></label>
+          <label class="wide">상세 설명 <textarea id="card-detail" rows="3"></textarea></label>
+          <label>수복량 <input id="card-recover" type="number" min="0" /></label>
+          <label>흡혈비율(0~1) <input id="card-lifesteal" type="number" min="0" max="1" step="0.05" /></label>
+          <label>저주 대가/충돌 <input id="card-hpcost" type="number" min="0" /></label>
+          <label>인챈트 보너스 <input id="card-enchant-bonus" type="number" min="0" /></label>
+          <label>다이스 없음 <input id="card-no-dice" type="checkbox" /></label>
+          <label>아르카나 메인 취급 <input id="card-treat-as-main" type="checkbox" /></label>
+        </div>
+        <div class="row">
+          <label>현재 덱에 포함 <input id="in-selected-deck" type="checkbox" /></label>
+          <button id="save-card-btn" type="button">카드 저장</button>
+          <button id="delete-card-btn" type="button">카드 삭제</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <h2>구현 저장 + 피드백</h2>
+      <div class="row">
+        <button id="connect-db-file-btn" type="button">DB 파일 연결</button>
+        <button id="save-db-file-btn" type="button">파일로 저장</button>
+        <button id="load-db-file-btn" type="button">파일에서 불러오기</button>
+        <span id="db-file-status" class="db-status">파일 미연결</span>
+      </div>
+      <div class="row">
+        <input id="build-title" type="text" placeholder="예: bleed 테마 1차 구현" />
+        <button id="save-build-btn" type="button">구현 스냅샷 저장</button>
+      </div>
+      <textarea id="build-note" rows="3" placeholder="이번 구현 의도/요청 사항"></textarea>
+      <p class="hint">권장: 워크스페이스의 <code>card-studio-db.json</code> 파일을 연결해 저장하세요. 그러면 제가 파일을 직접 읽어 평가할 수 있습니다.</p>
+    </section>
+  </main>
+
+  <script src="js/lacero-rules.js"></script>
+  <script src="js/lacero-cards.js"></script>
+  <script src="js/lacero-decks.js"></script>
+  <script src="js/card-studio.js"></script>
+</body>
+</html>

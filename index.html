@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>손우주의 대모험</title>
+  <link rel="stylesheet" href="css/scenes.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 메인 화면 -->
+    <section id="scene-main" class="scene scene--active" data-scene="main" aria-hidden="false">
+      <div class="scene__inner">
+        <h1 class="title">손우주의 대모험</h1>
+        <p class="subtitle">임시 메인 메뉴</p>
+        <button type="button" class="btn btn--primary" data-goto="start">시작</button>
+        <a class="btn" href="lacero.html" style="display:inline-block;margin-top:12px;text-decoration:none">lácĕro (카드 PvE)</a>
+        <a class="btn" href="aigo.html" style="display:inline-block;margin-top:8px;text-decoration:none">아이고 대모험 (플랫포머)</a>
+        <a class="btn" href="survive.html" style="display:inline-block;margin-top:8px;text-decoration:none">생존 (맵 프로토타입)</a>
+      </div>
+    </section>
+
+    <!-- 시작 씬 (인트로·난이도 등 임시) -->
+    <section id="scene-start" class="scene" data-scene="start" aria-hidden="true">
+      <div class="scene__inner">
+        <h2>시작</h2>
+        <p class="hint">임시 시작 씬</p>
+        <button type="button" class="btn" data-goto="stage">스테이지로</button>
+        <button type="button" class="btn btn--ghost" data-goto="main">메인으로</button>
+      </div>
+    </section>
+
+    <!-- 스테이지 (게임 플레이) -->
+    <section id="scene-stage" class="scene" data-scene="stage" aria-hidden="true">
+      <div class="scene__inner scene__inner--wide">
+        <h2>스테이지</h2>
+        <p class="hint">우클릭 이동 · ESC 일시정지 · 웨이브 클리어 시 간식실 · 원형=근접 · 마름모=원거리 · 삼각=급습 · 웨이브 8+ 주황 점선=돌진 엘리트 / 녹십자=힐러 엘리트</p>
+        <div class="stage-canvas-wrap">
+          <canvas id="game-canvas" width="960" height="540" aria-label="게임 화면"></canvas>
+          <div
+            id="levelup-overlay"
+            class="levelup-overlay"
+            hidden
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="levelup-title"
+            aria-hidden="true"
+          >
+            <div class="levelup-panel">
+              <h3 id="levelup-title" class="levelup-title">레벨 업</h3>
+              <p class="levelup-sub">
+                <span id="levelup-sub-text">스탯 하나를 선택하세요 · 남은 선택</span>
+                <span id="levelup-remain">0</span>
+              </p>
+              <div id="levelup-choices" class="levelup-choices"></div>
+            </div>
+          </div>
+          <div
+            id="skill-drop-overlay"
+            class="levelup-overlay"
+            hidden
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="skill-drop-title"
+            aria-hidden="true"
+          >
+            <div class="levelup-panel levelup-panel--wide">
+              <h3 id="skill-drop-title" class="levelup-title">액티브 스킬 드랍</h3>
+              <p id="skill-drop-skill" class="levelup-drop-name"></p>
+              <p id="skill-drop-desc" class="levelup-drop-desc"></p>
+              <p class="levelup-drop-hint">장착할 슬롯(1~4)을 누르면 해당 칸과 교체됩니다.</p>
+              <div id="skill-drop-slots" class="skill-drop-slots"></div>
+              <div class="levelup-drop-actions">
+                <button type="button" class="btn btn--ghost" id="skill-drop-reject">거절</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scene__actions">
+          <button type="button" class="btn" data-goto="snack">간식실 (임시)</button>
+          <button type="button" class="btn" data-goto="gameover">게임오버 (임시)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 간식실 -->
+    <section id="scene-snack" class="scene" data-scene="snack" aria-hidden="true">
+      <div class="scene__inner scene__inner--wide">
+        <h2>간식실</h2>
+        <p id="snack-hint" class="hint">웨이브 사이 휴식</p>
+        <p class="snack-currency-line">보유 <strong id="snack-currency">0</strong> ◆</p>
+        <p id="snack-hint-shop" class="hint snack-shop-meta"></p>
+        <div id="snack-shop-list" class="snack-shop-list"></div>
+        <div class="snack-shop-actions">
+          <button type="button" class="btn btn--ghost" id="snack-refresh">상점 새로고침 (1회)</button>
+          <button type="button" class="btn btn--primary" data-goto="stage">다음 전투로</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 게임오버 -->
+    <section id="scene-gameover" class="scene" data-scene="gameover" aria-hidden="true">
+      <div class="scene__inner">
+        <h2>게임 오버</h2>
+        <p class="hint">임시 결과 화면</p>
+        <button type="button" class="btn btn--primary" data-goto="main">메인으로</button>
+        <button type="button" class="btn" data-goto="start">다시 시작</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/scene-manager.js"></script>
+  <script src="js/snack-shop.js"></script>
+  <script src="js/skills.js"></script>
+  <script src="js/stage-game.js"></script>
+</body>
+</html>

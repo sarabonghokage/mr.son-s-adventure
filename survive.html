@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>생존 — 맵 프로토타입</title>
+
+  <link rel="stylesheet" href="css/survive.css" />
+
+</head>
+
+<body>
+
+  <div class="survive-wrap">
+
+    <header class="survive-header">
+
+      <h1 class="survive-title">생존 · 맵 (M1)</h1>
+
+      <p id="survive-seed-label" class="survive-seed">—</p>
+
+    </header>
+
+    <div class="survive-main">
+
+      <div class="survive-canvas-wrap">
+
+        <canvas id="survive-canvas" width="1280" height="720" aria-label="생존 게임 화면"></canvas>
+
+      </div>
+
+      <aside class="survive-panel" aria-label="조작 안내">
+
+        <section class="survive-controls">
+
+          <h2 class="survive-panel__title">조작</h2>
+
+          <ul class="survive-controls__list">
+
+            <li><kbd>W A S D</kbd> 이동</li>
+
+            <li><kbd>마우스</kbd> 조준 · <kbd>좌클릭</kbd> 사격</li>
+
+            <li><kbd>R</kbd> 재장전</li>
+
+            <li><kbd>E</kbd> 아이템 줍기</li>
+
+            <li><kbd>1~4</kbd> 권총 · 자동 · 산탄 · 유탄</li>
+            <li><kbd>Q</kbd> 무기 순환</li>
+            <li><kbd>G</kbd> 수류탄 · <kbd>F</kbd> 연막탄</li>
+
+            <li><kbd>`</kbd> 맵 재생성</li>
+
+          </ul>
+
+        </section>
+
+        <section class="survive-legend">
+
+          <h2 class="survive-panel__title">벽 · 적</h2>
+
+          <ul class="survive-legend__list">
+
+            <li><span class="survive-legend__swatch survive-legend__swatch--concrete"></span>콘크리트</li>
+
+            <li><span class="survive-legend__swatch survive-legend__swatch--wood"></span>나무</li>
+
+            <li><span class="survive-legend__swatch survive-legend__swatch--glass"></span>유리</li>
+
+            <li>3티어 — 멍멍이 · 멋쟁이 · 맹인 · 수다쟁이 · 뜀쟁이 · 칼잽이</li>
+            <li>4티어 — 겁쟁이 · 날쌘돌이 · 원숭이 · 뚱뚱이</li>
+
+          </ul>
+
+        </section>
+
+      </aside>
+
+    </div>
+
+    <p class="survive-footer"><a href="index.html">메인으로</a></p>
+
+  </div>
+
+  <script src="js/survive-map-config.js"></script>
+
+  <script src="js/survive-map-gen.js"></script>
+
+  <script src="js/survive-fov.js"></script>
+
+  <script src="js/survive-juice.js"></script>
+
+  <script src="js/survive-weapons.js"></script>
+
+  <script src="js/survive-effects.js"></script>
+
+  <script src="js/survive-inventory.js"></script>
+
+  <script src="js/survive-loot.js"></script>
+
+  <script src="js/survive-throwables.js"></script>
+
+  <script src="js/survive-audio.js"></script>
+
+  <script src="js/survive-enemies.js"></script>
+
+  <script src="js/survive-game.js"></script>
+
+</body>
+
+</html>
+

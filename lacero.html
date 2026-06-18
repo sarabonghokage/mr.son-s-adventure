@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lácĕro — PvE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/lacero.css" />
+</head>
+<body>
+  <nav class="mock-nav" aria-label="문서 이동">
+    <a href="index.html">메인 메뉴</a>
+    <a href="lacero-tutorial.html">튜토리얼</a>
+    <a href="card-studio.html">Card Studio</a>
+    <a href="lacero.html?enemy=grunt_01">일반 적</a>
+    <a href="lacero.html?enemy=boss_01">보스</a>
+  </nav>
+  <div class="bloodframe" id="bloodframe">
+    <main class="stage-viewport" aria-label="lácĕro duel viewport">
+      <section class="scene scene--active" id="map-scene" aria-label="맵">
+        <div class="map-panel">
+          <h2>길</h2>
+          <p class="map-floor" id="map-floor">층 0</p>
+          <p class="map-score" id="map-score">퍼포먼스 0</p>
+          <p class="map-prompt" id="map-prompt">둘 중 하나의 길을 선택하세요.</p>
+          <div class="map-binary-row" id="map-binary-row" role="group" aria-label="노드 선택"></div>
+          <ul class="map-log-list" id="map-log-list"></ul>
+        </div>
+      </section>
+
+      <section class="scene" id="player-scene" hidden aria-label="player turn scene">
+      <header class="combat-hud combat-hud--top">
+        <section class="fighter-panel fighter-panel--left" id="fighter-panel-p1" aria-label="1P status">
+          <p class="fighter-name">Convict 01</p>
+          <div class="heart-hp">
+            <span class="icon-heart" aria-hidden="true">♥</span>
+            <span>HP</span>
+            <strong id="p1-hp">48</strong>
+          </div>
+          <div class="status-list">
+            <span class="status-pill">출혈 x1</span>
+            <span class="status-pill">집중</span>
+          </div>
+        </section>
+
+        <section class="combat-status-panel" aria-label="전투 상태">
+          <p class="adv-label">전투</p>
+          <p class="turn-order" id="turn-order">적 체인 공개 → 내 카드 → 합산</p>
+          <p class="phase-text" id="phase-text">적 체인을 확인하고 카드를 배치하세요</p>
+          <p class="phase-text" id="encounter-text">vs 망령 병사</p>
+        </section>
+
+        <section class="fighter-panel fighter-panel--right" id="fighter-panel-p2" aria-label="적 상태">
+          <p class="fighter-name" id="enemy-name">적</p>
+          <span class="enemy-tag" id="enemy-tag">일반</span>
+          <div class="heart-hp">
+            <span class="icon-heart" aria-hidden="true">♥</span>
+            <span>HP</span>
+            <strong id="p2-hp">27</strong>
+          </div>
+          <div class="status-list">
+            <span class="status-pill">현기증</span>
+          </div>
+        </section>
+      </header>
+
+      <section class="resolution-zone" aria-label="Resolve area">
+        <aside class="dice-panel">
+          <h2>주사위</h2>
+          <p>아펙투스: <strong id="affectus-dice">기쁨</strong></p>
+          <p>전투: <strong id="combat-dice">8 vs 6</strong></p>
+          <div class="dice-actions">
+            <button type="button" class="ui-btn" data-effect="bleed">출혈 효과</button>
+            <button type="button" class="ui-btn" data-effect="dizzy">현기증 효과</button>
+            <button type="button" class="ui-btn" data-effect="clear">효과 초기화</button>
+            <button type="button" class="ui-btn" id="roll-affectus-btn">아펙투스 주사위 굴림</button>
+          </div>
+        </aside>
+
+        <article class="combat-log" aria-live="polite">
+          <h2>합산 로그</h2>
+          <ul id="combat-log-list"></ul>
+          <button type="button" class="ui-btn ui-btn--gavel" id="gavel-btn">턴 종료 (법봉)</button>
+        </article>
+      </section>
+
+      <section class="enemy-chain-zone" aria-label="적 체인">
+        <h2>적 체인 (공개)</h2>
+        <div class="enemy-chain-row" id="enemy-chain-row"></div>
+      </section>
+
+      <section class="chain-zone" aria-label="플레이어 체인">
+        <h2>내 체인</h2>
+        <div class="chain-row">
+          <div class="chain-slot">
+            <button type="button" class="arcana-slot" data-slot="1" data-pos="front">앞 공백</button>
+            <button type="button" class="main-slot" data-slot="1">공백</button>
+            <button type="button" class="arcana-slot" data-slot="1" data-pos="rear">뒤 공백</button>
+          </div>
+          <div class="chain-link" aria-hidden="true"></div>
+          <div class="chain-slot">
+            <button type="button" class="arcana-slot" data-slot="2" data-pos="front">앞 공백</button>
+            <button type="button" class="main-slot" data-slot="2">공백</button>
+            <button type="button" class="arcana-slot" data-slot="2" data-pos="rear">뒤 공백</button>
+          </div>
+          <div class="chain-link" aria-hidden="true"></div>
+          <div class="chain-slot">
+            <button type="button" class="arcana-slot" data-slot="3" data-pos="front">앞 공백</button>
+            <button type="button" class="main-slot" data-slot="3">공백</button>
+            <button type="button" class="arcana-slot" data-slot="3" data-pos="rear">뒤 공백</button>
+          </div>
+          <div class="chain-link" aria-hidden="true"></div>
+          <div class="chain-slot">
+            <button type="button" class="arcana-slot" data-slot="4" data-pos="front">앞 공백</button>
+            <button type="button" class="main-slot" data-slot="4">공백</button>
+            <button type="button" class="arcana-slot" data-slot="4" data-pos="rear">뒤 공백</button>
+          </div>
+          <div class="chain-link" aria-hidden="true"></div>
+          <div class="chain-slot">
+            <button type="button" class="arcana-slot" data-slot="5" data-pos="front">앞 공백</button>
+            <button type="button" class="main-slot" data-slot="5">공백</button>
+            <button type="button" class="arcana-slot" data-slot="5" data-pos="rear">뒤 공백</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="hand-zone" aria-label="hand cards">
+        <h2 id="hand-title">손패</h2>
+        <div class="hand-row" id="hand-row"></div>
+      </section>
+      <div class="card-tooltip" id="card-tooltip" hidden></div>
+      <div class="card-detail" id="card-detail" hidden>
+        <h3 id="card-detail-title"></h3>
+        <p id="card-detail-text"></p>
+      </div>
+      <div class="affectus-cutin" id="affectus-cutin" hidden>
+        <p class="affectus-cutin-sub">AFFECTUS</p>
+        <p class="affectus-cutin-main" id="affectus-cutin-main">GAUDIUM</p>
+      </div>
+      </section>
+
+      <section class="scene resolve-scene" id="resolve-scene" hidden aria-live="polite">
+        <div class="resolve-panel">
+          <h2>합산 결과</h2>
+          <p id="resolve-summary"></p>
+          <div class="resolve-stage" id="resolve-stage">
+            <div class="resolve-hit resolve-hit--left">
+              <p class="resolve-side-label">플레이어</p>
+              <p id="resolve-left-card" class="resolve-card-name">-</p>
+              <p id="resolve-left-impact" class="resolve-impact">대기</p>
+              <div class="resolve-fx-layer" id="resolve-fx-left"></div>
+            </div>
+            <div class="resolve-hit resolve-hit--center">
+              <p id="resolve-beat" class="resolve-beat">...</p>
+              <p id="resolve-center-event" class="resolve-center-event">교산 대기</p>
+            </div>
+            <div class="resolve-hit resolve-hit--right">
+              <p class="resolve-side-label">적</p>
+              <p id="resolve-right-card" class="resolve-card-name">-</p>
+              <p id="resolve-right-impact" class="resolve-impact">대기</p>
+              <div class="resolve-fx-layer" id="resolve-fx-right"></div>
+            </div>
+          </div>
+          <p id="resolve-live" class="resolve-live">전투 연출 대기...</p>
+          <ul id="resolve-detail-list" class="resolve-detail-list"></ul>
+          <button type="button" class="ui-btn ui-btn--gavel" id="resolve-next-btn">다음 턴 시작</button>
+        </div>
+      </section>
+    </main>
+    <div class="combat-dice-cutin" id="combat-dice-cutin" hidden>
+      <p class="combat-dice-cutin-sub">ICTUS</p>
+      <div class="combat-dice-box" aria-hidden="true">
+        <span class="combat-dice-faces" id="combat-dice-faces">d12</span>
+        <p class="combat-dice-cutin-main" id="combat-dice-cutin-main">VII</p>
+      </div>
+      <p class="combat-dice-player" id="combat-dice-player">1P</p>
+    </div>
+    <section id="execution-overlay" class="execution-overlay" hidden>
+      <div class="execution-core">
+        <div class="damnatio-slash" id="damnatio-slash">
+          <p class="execution-title">DAMNÁTĬO</p>
+        </div>
+        <p class="execution-subtitle" id="execution-subtitle">무방비 상태. 처형 시도를 준비하세요.</p>
+        <button type="button" class="ui-btn execution-action-btn" id="execution-action-btn" hidden>처형 실행</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/lacero-cards.js"></script>
+  <script src="js/lacero-decks.js"></script>
+  <script src="js/lacero-characters.js"></script>
+  <script src="js/lacero-enemies.js"></script>
+  <script src="js/lacero-rules.js"></script>
+  <script src="js/lacero-map.js"></script>
+  <script src="js/lacero-exchange-schedule.js"></script>
+  <script src="js/lacero-ui.js"></script>
+</body>
+</html>

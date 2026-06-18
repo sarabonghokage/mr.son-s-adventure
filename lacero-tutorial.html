@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lácĕro — 튜토리얼 (임시)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/lacero-tutorial.css" />
+</head>
+<body>
+  <div class="tutorial-frame">
+    <nav class="tutorial-nav" aria-label="페이지 이동">
+      <a href="lacero.html">← 목업으로 돌아가기</a>
+      <a href="card-studio.html">Card Studio</a>
+    </nav>
+
+    <article class="tutorial-shell">
+      <h1>튜토리얼 (임시)</h1>
+      <p class="tutorial-lead">
+        아래 내용은 목업과 별도로 두는 <strong>규칙·용어 안내</strong>입니다. 카드 본문에는 수치·태그만 두고,
+        세부 룰은 여기서 확인합니다.
+      </p>
+
+      <section>
+        <h2>목업에서 읽는 법</h2>
+        <ul>
+          <li><strong>손패 카드 테두리 색</strong>으로 카드 종류(일반 메인 / 아르카나 / 인챈트 등)를 구분합니다.</li>
+          <li><strong>호버</strong>: 짧은 한 줄 요약.</li>
+          <li><strong>Tab</strong>: 고정 피해, 전투 주사위 면 수·배율, 연타, 태그 목록 등 수치 중심 상세.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>주사위: 아펙투스 vs 전투</h2>
+        <ul>
+          <li><strong>아펙투스 주사위</strong>: 자신의 턴이 시작될 때 굴리며, 결과는 공개됩니다. 이후 같은 턴 안에서
+            적용되는 전역 보정(예: 기쁨/슬픔은 다이스 경향, 분노/두려움은 피해 배율 등)에 쓰입니다.</li>
+          <li><strong>전투 주사위</strong>: <strong>충돌(타격)마다</strong> 해당 메인 카드의 면 수에 맞춰 따로 굴립니다.
+            위력은 보통 「고정 피해 + 아르카나 보정 + 전투 주사위」로 계산되며, 카드마다 면 수(d4, d6, d12 …)가 다를 수 있습니다.</li>
+          <li>예리·아펙투스 등은 같은 굴림에 겹쳐 적용될 수 있으나, <strong>적용 순서와 수식은 튜토리얼·규칙 파일 기준</strong>입니다.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>턴과 합</h2>
+        <ul>
+          <li>한 <strong>합</strong>은 선행동 → 후행동 → 합산(충돌 처리)으로 이어집니다.</li>
+          <li>유리도(천칭)는 우선권·순서에 관여합니다. 수복으로 유리도에 반영되는 타이밍 등은 규칙 데이터를 따릅니다.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>체인 · 메인 · 아르카나 · 인챈트</h2>
+        <ul>
+          <li>슬롯마다 <strong>메인</strong>이 있어야 그 슬롯의 <strong>앞·뒤 아르카나</strong>를 둘 수 있습니다.</li>
+          <li>아르카나는 <strong>앞 슬롯용</strong> 카드와 <strong>뒤 슬롯용</strong> 카드가 나뉩니다. 목업에서는 장착한 아르카나
+            한 장당 그 슬롯의 각 타격 위력에 +1이 더해지는 식으로 처리됩니다.</li>
+          <li><strong>인챈트</strong>는 전투 피해 수치를 직접 주지 않고, 메인/아르카나 위에 겹쳐 두어
+            발동 타이밍·지속·중첩은 카드에 적힌 대로(추후 구현) 적용됩니다.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>공격 태그(속성) 요약</h2>
+        <p>모든 공격 메인 카드는 하나 이상의 태그를 가집니다. 의미만 요약합니다.</p>
+        <table class="tag-table">
+          <thead>
+            <tr>
+              <th>태그</th>
+              <th>요지</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>예리 sharp</td>
+              <td>전투 주사위에서 하위 면 일부를 굴림에서 제외(면 수의 33% 올림 등). 면 수 설계는 규칙과 맞춤.</td>
+            </tr>
+            <tr>
+              <td>중후 heavy</td>
+              <td>내 위력이 상대 그 타격의 2배 이상이면 상대의 다음 연타를 무효화.</td>
+            </tr>
+            <tr>
+              <td>과다 출혈 bleed</td>
+              <td>스택·합마다 틱 피해, 심각도·지속 규칙 적용.</td>
+            </tr>
+            <tr>
+              <td>현기증 dizziness</td>
+              <td>지속 중 상대 아펙투스가 혼란 쪽으로 바뀌고, 혼란 실패는 카드 단위로 판정.</td>
+            </tr>
+            <tr>
+              <td>경직 stagger</td>
+              <td>해당 충돌에서 상대를 공백에 가깝게 만들어 방어가 무너짐.</td>
+            </tr>
+            <tr>
+              <td>화상 burn</td>
+              <td>심각도 구간에 따라 열상·받피 증가·앞 아르카나 봉인·규율 불가 등.</td>
+            </tr>
+            <tr>
+              <td>흡혈 lifesteal</td>
+              <td>가한 피해의 일부를 HP로 회복.</td>
+            </tr>
+            <tr>
+              <td>저주 curse</td>
+              <td>교산이 아닌 충돌마다 HP 대가. 공격이 무효여도 대가는 지불.</td>
+            </tr>
+            <tr>
+              <td>방어·집중·제어 등</td>
+              <td>덱 성향·키워드. 수복·경직 등과 함께 읽습니다.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          상태이상 수치·지속·상한은 <code>lacero-rules.js</code> 및 실제 합산 로직을 기준으로 합니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>처형 DAMNÁTĬO</h2>
+        <ul>
+          <li>HP가 0이 되면 무방비·처형 루틴으로 진입합니다. 목업에서는 연출과 자동 진행을 보여 줍니다.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</body>
+</html>

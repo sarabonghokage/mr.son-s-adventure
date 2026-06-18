@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아이고 대모험</title>
+  <link rel="stylesheet" href="css/aigo.css" />
+</head>
+<body>
+  <div class="aigo-wrap">
+    <header class="aigo-header">
+      <h1 class="aigo-title">아이고 대모험</h1>
+      <p class="aigo-hint">생명 3 · 스테이지 클리어 시 회복 · 캐릭터 선택 후 시작</p>
+    </header>
+    <div class="aigo-canvas-wrap">
+      <canvas id="aigo-canvas" width="960" height="540" aria-label="아이고 대모험 게임 화면"></canvas>
+      <div id="aigo-char-select" class="aigo-char-select" aria-label="캐릭터 선택">
+        <div class="aigo-char-select__panel">
+          <h2 class="aigo-char-select__title">캐릭터 선택</h2>
+          <div class="aigo-char-select__grid">
+            <button type="button" class="aigo-char-card" data-char="jumper">
+              <span class="aigo-char-card__badge aigo-char-card__badge--green"></span>
+              <strong class="aigo-char-card__name">토끼발</strong>
+              <p class="aigo-char-card__trait">더블 점프</p>
+            </button>
+            <button type="button" class="aigo-char-card" data-char="dasher">
+              <span class="aigo-char-card__badge aigo-char-card__badge--purple"></span>
+              <strong class="aigo-char-card__name">그림자</strong>
+              <p class="aigo-char-card__trait">짧은 대시 · 대시 중 주변 적 공격</p>
+            </button>
+            <button type="button" class="aigo-char-card" data-char="blademaster">
+              <span class="aigo-char-card__badge aigo-char-card__badge--blue"></span>
+              <strong class="aigo-char-card__name">창검사</strong>
+              <p class="aigo-char-card__trait">긴 칼</p>
+            </button>
+            <button type="button" class="aigo-char-card" data-char="climber">
+              <span class="aigo-char-card__badge aigo-char-card__badge--orange"></span>
+              <strong class="aigo-char-card__name">벽타는이</strong>
+              <p class="aigo-char-card__trait">벽 타기 (대시 없음)</p>
+            </button>
+          </div>
+          <p class="aigo-char-select__hint">특성은 캐릭터당 하나만 적용됩니다</p>
+        </div>
+      </div>
+    </div>
+    <p class="aigo-footer"><a href="index.html">메인으로</a></p>
+  </div>
+  <script src="js/aigo-characters.js"></script>
+  <script src="js/aigo-enemies.js"></script>
+  <script src="js/aigo-juice.js"></script>
+  <script src="js/aigo-game.js"></script>
+</body>
+</html>

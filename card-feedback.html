@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lácĕro Card Feedback</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/card-feedback.css" />
+</head>
+<body>
+  <main class="feedback-shell">
+    <header class="top">
+      <h1>피드백 창</h1>
+      <a href="card-studio.html">Card Studio</a>
+    </header>
+    <div class="row">
+      <select id="build-select"></select>
+      <button id="refresh-btn" type="button">새로고침</button>
+    </div>
+    <p id="build-meta" class="meta"></p>
+    <textarea id="feedback-text" rows="3" placeholder="피드백 입력"></textarea>
+    <button id="save-feedback-btn" type="button">피드백 저장</button>
+    <ul id="feedback-list" class="list"></ul>
+  </main>
+  <script src="js/card-feedback.js"></script>
+</body>
+</html>
